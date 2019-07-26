@@ -2,15 +2,15 @@ package com.backendInventario.Services;
 
 import java.util.List;
 
-import com.backendInventario.ModelEntity.Productos;
+import com.backendInventario.ModelEntity.Producto;
 
 public interface IProductosService {
 	
-	public List<Productos> findAll();
+	public List<Producto> findAll();
 	
-	public Productos findbyId (int id);
+	public Producto findbyId (int id);
 	
-    public Productos save(Productos producto);
+    public Producto save(Producto producto);
 	
 	public void delete(int id);
 

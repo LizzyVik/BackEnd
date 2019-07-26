@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "precio")
-public class Precios {
+public class Precio {
 	
 	@Id
 	@Column
@@ -54,11 +54,6 @@ public class Precios {
 	public double valorBruto() {
 		double bruto = this.neto*0.19;
 		return bruto;
-	}
-	@Override
-	public String toString() {
-		return "Precio [id=" + id + ", neto=" + neto + ", fechaInicio=" + fechaInicio + ", fechaTermino=" + fechaTermino
-				+ "]";
 	}
 	
 	

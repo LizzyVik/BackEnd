@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="marcas")
-public class Marcas {
+public class Marca {
 	
 	@Id
 	@Column
@@ -27,10 +27,7 @@ public class Marcas {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	@Override
-	public String toString() {
-		return "Marca [id=" + id + ", marca=" + marca + "]";
-	}
+
 	
 	
 	

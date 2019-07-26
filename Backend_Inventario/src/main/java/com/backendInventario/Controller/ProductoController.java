@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
-import com.backendInventario.ModelEntity.Productos;
+import com.backendInventario.ModelEntity.Producto;
 import com.backendInventario.Services.IProductosService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -25,18 +25,18 @@ public class ProductoController {
 	@Autowired
 	private IProductosService productoService;
 	@GetMapping("/listados")
-	public List<Productos> index(){
+	public List<Producto> index(){
 		return productoService.findAll();
 	}
 	//Buscar por ID
 	@GetMapping("/Buscar/{id}")
-	public Productos show(@PathVariable int id) {
+	public Producto show(@PathVariable int id) {
 		return productoService.findbyId(id);
 	}
 	// crear Producto
-	@PostMapping("/add")
+	@PostMapping("/agregar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Productos create(@RequestBody Productos producto) {
+	public Producto create(@RequestBody Producto producto) {
 		return productoService.save(producto);
 	}
 

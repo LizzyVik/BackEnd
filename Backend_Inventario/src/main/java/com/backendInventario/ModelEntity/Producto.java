@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="productos")
-public class Productos {
+public class Producto {
 
 @Id	
 @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,16 +20,15 @@ private Integer id;
 @Column
 private String modelo;
 @OneToOne
-private Marcas marca;
+private Marca marca;
 @Column
 private String color;
 @OneToOne
-private  Categorias categoría;
+private  Categoria categoría;
 @OneToOne
-private Precios valorProducto;
+private Precio valorProducto;
 @OneToOne
 private Stock stock;
-
 public Integer getId() {
 	return id;
 }
@@ -42,16 +41,10 @@ public String getModelo() {
 public void setModelo(String modelo) {
 	this.modelo = modelo;
 }
-public Precios getValorProducto() {
-	return valorProducto;
-}
-public void setValorProducto(Precios valorProducto) {
-	this.valorProducto = valorProducto;
-}
-public Marcas getMarca() {
+public Marca getMarca() {
 	return marca;
 }
-public void setMarca(Marcas marca) {
+public void setMarca(Marca marca) {
 	this.marca = marca;
 }
 public String getColor() {
@@ -60,11 +53,17 @@ public String getColor() {
 public void setColor(String color) {
 	this.color = color;
 }
-public Categorias getCategoría() {
+public Categoria getCategoría() {
 	return categoría;
 }
-public void setCategoría(Categorias categoría) {
+public void setCategoría(Categoria categoría) {
 	this.categoría = categoría;
+}
+public Precio getValorProducto() {
+	return valorProducto;
+}
+public void setValorProducto(Precio valorProducto) {
+	this.valorProducto = valorProducto;
 }
 public Stock getStock() {
 	return stock;
@@ -72,17 +71,6 @@ public Stock getStock() {
 public void setStock(Stock stock) {
 	this.stock = stock;
 }
-@Override
-public String toString() {
-	return "Producto [id=" + id + ", modelo=" + modelo + ", marca=" + marca + ", color=" + color + ", categoría="
-			+ categoría + ", valorProducto=" + valorProducto + ", stock=" + stock + "]";
-}
-
-
-
-
-
-	
 	
 
 }

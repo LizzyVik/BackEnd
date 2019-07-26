@@ -45,11 +45,7 @@ public class Stock {
 	public void setCantidadMin(int cantidadMin) {
 		this.cantidadMin = cantidadMin;
 	}
-	@Override
-	public String toString() {
-		return "Stock [id=" + id + ", cantidadActual=" + cantidadActual + ", cantidadMax=" + cantidadMax
-				+ ", cantidadMin=" + cantidadMin + "]";
-	}
+
 	
 	
 	
