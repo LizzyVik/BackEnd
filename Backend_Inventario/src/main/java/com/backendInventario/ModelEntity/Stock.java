@@ -21,6 +21,11 @@ public class Stock {
 	private int cantidadMax;
 	@Column
 	private int cantidadMin;
+	
+	
+	////////////////////////77
+	
+	
 	public int getId() {
 		return id;
 	}
