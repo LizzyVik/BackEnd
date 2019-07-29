@@ -17,6 +17,7 @@ public class Cargo {
 	private int id;
 	@Column
 	private String cargo ;
+	
 	public int getId() {
 		return id;
 	}

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.backendInventario.ModelEntity.Stock;
 import com.backendInventario.Services.IStockService;
 
@@ -48,6 +47,8 @@ public class StockController {
 	public void deleteById(@PathVariable int id) {
 		stockService.deleteById(id);
 	}
+	
+	
 	
 	@ExceptionHandler
 	public static void stockException(int cantidadActual){
