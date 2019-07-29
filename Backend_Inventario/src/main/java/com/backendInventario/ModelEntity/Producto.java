@@ -24,7 +24,7 @@ private Marca marca;
 @Column
 private String color;
 @OneToOne
-private  Categoria categoría;
+private  Categoria categoria;
 @Column
 private Integer precio;
 @OneToOne
@@ -54,11 +54,11 @@ public String getColor() {
 public void setColor(String color) {
 	this.color = color;
 }
-public Categoria getCategoría() {
-	return categoría;
+public Categoria getCategoria() {
+	return categoria;
 }
-public void setCategoría(Categoria categoría) {
-	this.categoría = categoría;
+public void setCategoria(Categoria categoria) {
+	this.categoria = categoria;
 }
 public Integer getPrecio() {
 	return precio;

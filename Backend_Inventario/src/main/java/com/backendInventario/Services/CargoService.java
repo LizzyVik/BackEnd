@@ -14,5 +14,7 @@ import com.backendInventario.ModelEntity.Cargo;
 	
 	public void delete(int id);
 	
+	
+	
 
 }

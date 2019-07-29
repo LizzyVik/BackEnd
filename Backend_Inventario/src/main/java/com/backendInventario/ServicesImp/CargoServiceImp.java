@@ -1,3 +1,4 @@
+
 package com.backendInventario.ServicesImp;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class CargoServiceImp implements  CargoService{
 		cargoDao.deleteById(id);
 	}
 
+	
 	
 
 }

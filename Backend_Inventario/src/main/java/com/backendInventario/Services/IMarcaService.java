@@ -11,9 +11,11 @@ public interface IMarcaService {
 	
 	public Optional<Marca> findById (int id);
 	
-    public Marca save(Marca marca);
+    public Marca save(Marca marcaActual);
 	
 	public void delete(int id);
+	
+	
 
 
 }

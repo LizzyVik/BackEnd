@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
-
 import com.backendInventario.ModelEntity.Producto;
 import com.backendInventario.Services.IProductosService;
 
@@ -44,5 +44,22 @@ public class ProductoController {
 	@DeleteMapping("/productos/{id}")
 	public void delete(@PathVariable int id) {
 		productoService.delete(id);
+	}
+	
+	@PutMapping("/productos/{id}")
+	public Producto update(@RequestBody Producto producto,@PathVariable int id){
+		Producto productoActual=productoService.findbyId(id);
+		
+		productoActual.setCategoria(producto.getCategoria());
+		productoActual.setColor(producto.getColor());
+		productoActual.setId(producto.getId());
+		productoActual.setMarca(producto.getMarca());
+		productoActual.setModelo(producto.getModelo());
+		productoActual.setPrecio(producto.getPrecio());
+		productoActual.setStock(producto.getStock());
+		
+		return productoService.save(productoActual);
+		
+		
 	}
 }

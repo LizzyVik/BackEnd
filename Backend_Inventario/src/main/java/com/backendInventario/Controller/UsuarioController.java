@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,5 +46,23 @@ public class UsuarioController {
 		userservice.delete(id);
 	}
 	
+	@PutMapping("/usuarios/{id}")
+	public Usuario update(@RequestBody Usuario user,@PathVariable int id){
+		Usuario usuarioActual=userservice.findbyId(id);
+		
+		usuarioActual.setId(user.getId());
+		usuarioActual.setRut(user.getRut());
+		usuarioActual.setNombre(user.getNombre());
+		usuarioActual.setApellidos(user.getApellidos());
+		usuarioActual.setEmail(user.getEmail());
+		usuarioActual.setPassword(user.getPassword());
+		usuarioActual.setCargo(user.getCargo());
+		usuarioActual.setSucursal(user.getSucursal());
+		
+		return userservice.save(usuarioActual);
+		
+		
+	
 
+}
 }
