@@ -14,42 +14,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backendInventario.ModelEntity.Cargo;
-import com.backendInventario.Services.CargoService;
+import com.backendInventario.ModelEntity.Categoria;
+import com.backendInventario.Services.ICategoriasService;
 
-public class CargoController {
+
 	
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@RestController
-	@RequestMapping("/cargos")
-	public class ProductoController {
+	@RequestMapping("/categorias")
+	public class CategoriaController {
 		
 		@Autowired
-		private CargoService cargoService;
+		private ICategoriasService categoriaService;
 		
 		@GetMapping("/listados")
-		public List<Cargo> index(){
-			return cargoService.findAll();
+		public List<Categoria> index(){
+			return categoriaService.findAll();
 		}
 		//Buscar por ID
 		@GetMapping("/Buscar/{id}")
-		public Cargo show(@PathVariable int id) {
-			return cargoService.findbyId(id);
+		public Categoria show(@PathVariable int id) {
+			return categoriaService.findbyId(id);
 		}
-		// crear Cargo
+		// crear categoria
 		@PostMapping("/agregar")
 		@ResponseStatus(HttpStatus.CREATED)
-		public Cargo create(@RequestBody Cargo cargo) {
-			return cargoService.save(cargo);
+		public Categoria create(@RequestBody Categoria categoria) {
+			return categoriaService.save(categoria);
 		}
 
-		@DeleteMapping("/cargos/{id}")
+		@DeleteMapping("/categorias/{id}")
 		public void delete(@PathVariable int id) {
-			cargoService.delete(id);
+			categoriaService.delete(id);
 		}
 		
 		
 	}
 
 
-}

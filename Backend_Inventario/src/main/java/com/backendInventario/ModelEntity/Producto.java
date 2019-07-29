@@ -25,10 +25,11 @@ private Marca marca;
 private String color;
 @OneToOne
 private  Categoria categoría;
-@OneToOne
-private Precio valorProducto;
+@Column
+private Integer precio;
 @OneToOne
 private Stock stock;
+
 public Integer getId() {
 	return id;
 }
@@ -59,11 +60,11 @@ public Categoria getCategoría() {
 public void setCategoría(Categoria categoría) {
 	this.categoría = categoría;
 }
-public Precio getValorProducto() {
-	return valorProducto;
+public Integer getPrecio() {
+	return precio;
 }
-public void setValorProducto(Precio valorProducto) {
-	this.valorProducto = valorProducto;
+public void setPrecio(Integer precio) {
+	this.precio = precio;
 }
 public Stock getStock() {
 	return stock;

@@ -40,4 +40,6 @@ public class CargoServiceImp implements  CargoService{
 		cargoDao.deleteById(id);
 	}
 
+	
+
 }

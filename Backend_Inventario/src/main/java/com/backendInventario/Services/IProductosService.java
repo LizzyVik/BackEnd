@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.backendInventario.ModelEntity.Producto;
 
-public interface IProductosService {
+    public interface IProductosService {
 	
 	public List<Producto> findAll();
 	

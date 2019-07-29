@@ -13,18 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.backendInventario.ModelEntity.Producto;
 import com.backendInventario.ModelEntity.Usuario;
 import com.backendInventario.Services.UsuarioService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 
 public class UsuarioController {
 	@Autowired
 	private UsuarioService userservice;
+	
 	@GetMapping("/listados")
 	public List<Usuario> index(){
 		return userservice.findAll();
@@ -34,14 +33,14 @@ public class UsuarioController {
 	public Usuario show(@PathVariable int id) {
 		return userservice.findbyId(id);
 	}
-	// crear Producto
+	// crear usuario
 	@PostMapping("/agregar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Usuario create(@RequestBody Usuario user) {
 		return userservice.save(user);
 	}
 
-	@DeleteMapping("/usuario/{id}")
+	@DeleteMapping("/usuarios/{id}")
 	public void delete(@PathVariable int id) {
 		userservice.delete(id);
 	}

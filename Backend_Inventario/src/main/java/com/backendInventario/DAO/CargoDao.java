@@ -6,4 +6,5 @@ import com.backendInventario.ModelEntity.Cargo;
 
 public interface CargoDao  extends CrudRepository<Cargo, Integer>{
 
+
 }

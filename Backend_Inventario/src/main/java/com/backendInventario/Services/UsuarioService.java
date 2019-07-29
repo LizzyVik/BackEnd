@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.backendInventario.ModelEntity.Usuario;;
 
-public interface UsuarioService {
-
+    public interface UsuarioService {
 	
 	public List<Usuario> findAll();
 	

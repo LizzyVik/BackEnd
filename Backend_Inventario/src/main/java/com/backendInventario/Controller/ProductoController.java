@@ -24,6 +24,7 @@ public class ProductoController {
 	
 	@Autowired
 	private IProductosService productoService;
+	
 	@GetMapping("/listados")
 	public List<Producto> index(){
 		return productoService.findAll();

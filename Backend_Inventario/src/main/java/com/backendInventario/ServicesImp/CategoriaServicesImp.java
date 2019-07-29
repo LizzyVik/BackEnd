@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.backendInventario.DAO.CargoDao;
+
 import com.backendInventario.DAO.ICategoriaDAO;
-import com.backendInventario.ModelEntity.Cargo;
 import com.backendInventario.ModelEntity.Categoria;
-import com.backendInventario.Services.CargoService;
 import com.backendInventario.Services.ICategoriasService;
 
 @Service
