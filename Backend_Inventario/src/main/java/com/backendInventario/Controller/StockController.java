@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,6 +47,17 @@ public class StockController {
 	@DeleteMapping("/stock/{id}")
 	public void deleteById(@PathVariable int id) {
 		stockService.deleteById(id);
+	}
+	
+	@PutMapping("/stock/{id}")
+	public Stock update(@RequestBody Stock stock,@PathVariable Integer id) {
+		Stock stockActualizado=stockService.findById(id).get();
+		
+		stockActualizado.setCantidadActual(stock.getCantidadActual());
+		stockActualizado.setCantidadMax(stock.getCantidadMax());
+		stockActualizado.setCantidadMin(stock.getCantidadMin());
+		
+		return stockService.save(stock);
 	}
 	
 	

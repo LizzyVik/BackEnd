@@ -27,9 +27,8 @@ public class Marca {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
 	
-	
+		
 	
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,6 +47,16 @@ public class MarcaController {
 		@DeleteMapping("/marcas/{id}")
 		public void delete(@PathVariable int id) {
 			marcaservice.delete(id);
+		}
+		
+		@PutMapping("/marcas/{id}")
+		public Marca update(@RequestBody Marca marca,@PathVariable int id) {
+			Marca marcaActualizada=marcaservice.findById(id).get();
+			
+			marcaActualizada.setId(marca.getId());
+			marcaActualizada.setMarca(marca.getMarca());
+			
+			return ((IMarcaService) marcaActualizada).save(marca);
 		}
 		
 
