@@ -12,18 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import com.backendInventario.ModelEntity.Categoria;
 import com.backendInventario.Services.ICategoriasService;
 
-
-	
-	
 	@Controller("/categoria")
 	public class CategoriaController {
 		
 		@Autowired
 		private ICategoriasService categoriaService;
-		
 		
 		@GetMapping("categorias")
 		public ResponseEntity<?> getAllXCategorias(){

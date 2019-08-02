@@ -1,8 +1,6 @@
 package com.backendInventario.ServicesImp;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,7 @@ public class MarcaServicesImp implements IMarcaService{
 		return (List<Marca>) marcaDao.findAll() ;
 	}
 
-	@Override
-	public Optional<Marca> findById(int id) {
-		return marcaDao.findById(id);
-	}
-
+	
 	@Override
 	public Marca save(Marca marca) {
 		return marcaDao.save(marca);
@@ -36,5 +30,19 @@ public class MarcaServicesImp implements IMarcaService{
 		marcaDao.deleteById(id);
 		
 	}
+
+	@Override
+	public boolean existMarca(Integer id) {
+		return marcaDao.existsById(id);
+	}
+
+
+	@Override
+	public Marca findById(Integer id) {
+		return marcaDao.findById(id).orElse(null);
+	}
+
+
+	
 
 }

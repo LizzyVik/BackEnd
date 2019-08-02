@@ -12,6 +12,10 @@ import com.backendInventario.ModelEntity.Producto;
 	
     public Producto save(Producto producto);
 	
-	public void delete(int id);
+	public boolean existProducto(Integer id);
+
+	public void deleteById(int id);
+
+	
 
 }

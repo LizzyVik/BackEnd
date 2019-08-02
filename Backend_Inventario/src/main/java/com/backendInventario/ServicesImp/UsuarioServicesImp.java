@@ -40,4 +40,9 @@ public class UsuarioServicesImp implements UsuarioService {
 		
 	}
 
+	@Override
+	public boolean existUsuario(Integer id) {
+		return daoUser.existsById(id);
+	}
+
 }

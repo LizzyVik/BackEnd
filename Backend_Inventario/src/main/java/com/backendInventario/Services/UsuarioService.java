@@ -14,4 +14,6 @@ import com.backendInventario.ModelEntity.Usuario;;
 	
 	public void delete(int id);
 
+	public boolean existUsuario(Integer id);
+
 }

@@ -1,66 +1,89 @@
 package com.backendInventario.Controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.backendInventario.ModelEntity.Marca;
 import com.backendInventario.Services.IMarcaService;
 
+@Controller("/marca")
 public class MarcaController {
-	@CrossOrigin(origins = {"http://localhost:4200"})
-	@RestController
-	@RequestMapping("/marcas")
 
-	public class UsuarioController {
 		@Autowired
-		private IMarcaService marcaservice;
+		private IMarcaService marcaService;
 		
-		@GetMapping("/listados")
-		public List<Marca> index(){
-			return marcaservice.findAll();
+		@GetMapping("marcas")
+		public ResponseEntity<?> getAllXProductos(){
+			List<Marca> lstMarcas = marcaService.findAll();
+			if (lstMarcas== null) {
+				
+				return new  ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}else {
+				if (lstMarcas.isEmpty()) {
+					return new  ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+				}
+			}
+			return new  ResponseEntity<List<?>>(lstMarcas, HttpStatus.OK);
 		}
-		//Buscar por ID
-		@GetMapping("/Buscar/{id}")
-		public Optional<Marca> show(@PathVariable int id) {
-			return marcaservice.findById(id);
+		
+		
+		@GetMapping("/marca/{id}")
+		public ResponseEntity<?> getMarcaById(@PathVariable("id") Integer id) {
+			if (marcaService.existMarca(id)) {
+				return new ResponseEntity<Marca>(marcaService.findById(id), HttpStatus.CREATED); 
+			}
+			return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
-		// agregar marca
-		@PostMapping("/agregar")
-		@ResponseStatus(HttpStatus.CREATED)
-		public Marca create(@RequestBody Marca marca) {
-			return marcaservice.save(marca);
+		
+		@PostMapping("/marca/add")
+		public ResponseEntity<?> create(@RequestBody Marca marca) {
+			Marca marcaResponse = null;
+			if(marca==null) {
+				return new ResponseEntity<>(null,HttpStatus.PRECONDITION_FAILED);
+			}else {
+				marcaResponse = marcaService.save(marca);
+				if (marcaResponse == null) {
+					return new ResponseEntity<Marca>(marcaResponse, HttpStatus.CREATED); 
+				}
+			}
+			return new ResponseEntity<Marca>(marca,HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 
-		@DeleteMapping("/marcas/{id}")
-		public void delete(@PathVariable int id) {
-			marcaservice.delete(id);
+		@DeleteMapping("/marca/{id}")
+		public ResponseEntity<?> deleteMarca(@PathVariable("id") int id) {
+			marcaService.delete(id);
+			if(marcaService.existMarca(id)) {
+				return new ResponseEntity<Marca>(marcaService.findById(id),HttpStatus.OK);
+			}
+			return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
-		@PutMapping("/marcas/{id}")
-		public Marca update(@RequestBody Marca marca,@PathVariable int id) {
-			Marca marcaActualizada=marcaservice.findById(id).get();
+		@PutMapping("/marca")
+		public ResponseEntity<?> updateMarca(@RequestBody Marca marca){
+			Marca marcaResponse = null;
+			if(marca == null) {
+				return new ResponseEntity<>(null,HttpStatus.PRECONDITION_FAILED);
+			} 
+			if(!marcaService.existMarca(marca.getId())) {
+				return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			marcaResponse = marcaService.save(marca);
+			 
+			if (marcaResponse== null) {
+				return new ResponseEntity<Marca>(marca,HttpStatus.UNPROCESSABLE_ENTITY);	
+			}
+			return new ResponseEntity<Marca>(marcaResponse,HttpStatus.OK);
 			
-			marcaActualizada.setId(marca.getId());
-			marcaActualizada.setMarca(marca.getMarca());
-			
-			return ((IMarcaService) marcaActualizada).save(marca);
 		}
-		
-
 	}
-
-
-}

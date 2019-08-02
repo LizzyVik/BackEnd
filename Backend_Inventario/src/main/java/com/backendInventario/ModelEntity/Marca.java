@@ -4,12 +4,11 @@ package com.backendInventario.ModelEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="marcas")
 public class Marca {
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	@Column
 	private String marca;

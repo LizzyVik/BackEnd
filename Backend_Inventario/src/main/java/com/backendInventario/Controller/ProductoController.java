@@ -3,63 +3,88 @@ package com.backendInventario.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+
 import com.backendInventario.ModelEntity.Producto;
 import com.backendInventario.Services.IProductosService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
-@RestController
-@RequestMapping("/productos")
+
+
+@Controller("/producto")
 public class ProductoController {
 	
 	@Autowired
 	private IProductosService productoService;
 	
-	@GetMapping("/listados")
-	public List<Producto> index(){
-		return productoService.findAll();
-	}
-	//Buscar por ID
-	@GetMapping("/Buscar/{id}")
-	public Producto show(@PathVariable int id) {
-		return productoService.findbyId(id);
-	}
-	// crear Producto
-	@PostMapping("/agregar")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Producto create(@RequestBody Producto producto) {
-		return productoService.save(producto);
-	}
-
-	@DeleteMapping("/productos/{id}")
-	public void delete(@PathVariable int id) {
-		productoService.delete(id);
+	@GetMapping("productos")
+	public ResponseEntity<?> getAllXProductos(){
+		List<Producto> lstProductos = productoService.findAll();
+		if (lstProductos== null) {
+			
+			return new  ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}else {
+			if (lstProductos.isEmpty()) {
+				return new  ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+		}
+		return new  ResponseEntity<List<?>>(lstProductos, HttpStatus.OK);
 	}
 	
-	@PutMapping("/productos/{id}")
-	public Producto update(@RequestBody Producto producto,@PathVariable int id){
-		Producto productoActual=productoService.findbyId(id);
-		
-		productoActual.setCategoria(producto.getCategoria());
-		productoActual.setColor(producto.getColor());
-		productoActual.setId(producto.getId());
-		productoActual.setMarca(producto.getMarca());
-		productoActual.setModelo(producto.getModelo());
-		productoActual.setPrecio(producto.getPrecio());
-		productoActual.setStock(producto.getStock());
-		
-		return productoService.save(productoActual);
-		
+	
+	@GetMapping("/producto/{id}")
+	public ResponseEntity<?> getProductoById(@PathVariable("id") Integer id) {
+		if (productoService.existProducto(id)) {
+			return new ResponseEntity<Producto>(productoService.findbyId(id), HttpStatus.CREATED); 
+		}
+		return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+	
+	@PostMapping("/producto/add")
+	public ResponseEntity<?> create(@RequestBody Producto producto) {
+		Producto productoResponse = null;
+		if(producto==null) {
+			return new ResponseEntity<>(null,HttpStatus.PRECONDITION_FAILED);
+		}else {
+			productoResponse = productoService.save(producto);
+			if (productoResponse == null) {
+				return new ResponseEntity<Producto>(productoResponse, HttpStatus.CREATED); 
+			}
+		}
+		return new ResponseEntity<Producto>(producto,HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+
+	@DeleteMapping("/producto/{id}")
+	public ResponseEntity<?> deleteProducto(@PathVariable("id") int id) {
+		productoService.deleteById(id);
+		if(productoService.existProducto(id)) {
+			return new ResponseEntity<Producto>(productoService.findbyId(id),HttpStatus.OK);
+		}
+		return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+	
+	@PutMapping("/producto")
+	public ResponseEntity<?> updateProducto(@RequestBody Producto producto){
+		Producto productoResponse = null;
+		if(producto == null) {
+			return new ResponseEntity<>(null,HttpStatus.PRECONDITION_FAILED);
+		} 
+		if(!productoService.existProducto(producto.getId())) {
+			return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		productoResponse = productoService.save(producto);
+		 
+		if (productoResponse== null) {
+			return new ResponseEntity<Producto>(producto,HttpStatus.UNPROCESSABLE_ENTITY);	
+		}
+		return new ResponseEntity<Producto>(productoResponse,HttpStatus.OK);
 		
 	}
 }

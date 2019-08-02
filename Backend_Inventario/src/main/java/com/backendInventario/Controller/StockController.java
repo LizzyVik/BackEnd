@@ -1,78 +1,91 @@
 package com.backendInventario.Controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+
+
 import com.backendInventario.ModelEntity.Stock;
 import com.backendInventario.Services.IStockService;
 
 
-@CrossOrigin(origins = {"http://localhost:4200"})
-@RestController
-@RequestMapping("/stock")
+@Controller("/stock")
 public class StockController {
 	
 	@Autowired
 	private IStockService stockService;
 	
-	@GetMapping("/listados")
-	public List<Stock> index(){
-		return stockService.findAll();
+	@GetMapping("allstock")
+	public ResponseEntity<?> getAllXStock(){
+		List<Stock> lstStock = stockService.findAll();
+		if (lstStock== null) {
+			
+			return new  ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}else {
+			if (lstStock.isEmpty()) {
+				return new  ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+		}
+		return new  ResponseEntity<List<?>>(lstStock, HttpStatus.OK);
 	}
-	//Buscar por ID
-	@GetMapping("/Buscar/{id}")
-	public Optional<Stock> show(@PathVariable int id) {
-		return stockService.findById(id);
+	
+	
+	@GetMapping("/stock/{id}")
+	public ResponseEntity<?> getStockById(@PathVariable("id") Integer id) {
+		if (stockService.existStock(id)) {
+			return new ResponseEntity<Stock>(stockService.findById(id), HttpStatus.CREATED); 
+		}
+		return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
-	// agregar stock
-	@PostMapping("/agregar")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Stock create(@RequestBody Stock stock) {
-		return stockService.save(stock);
+	
+	@PostMapping("/stock/add")
+	public ResponseEntity<?> create(@RequestBody Stock stock) {
+		Stock stockResponse = null;
+		if(stock==null) {
+			return new ResponseEntity<>(null,HttpStatus.PRECONDITION_FAILED);
+		}else {
+			stockResponse = stockService.save(stock);
+			if (stockResponse == null) {
+				return new ResponseEntity<Stock>(stockResponse, HttpStatus.CREATED); 
+			}
+		}
+		return new ResponseEntity<Stock>(stock,HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 
 	@DeleteMapping("/stock/{id}")
-	public void deleteById(@PathVariable int id) {
+	public ResponseEntity<?> deleteStock(@PathVariable("id") int id) {
 		stockService.deleteById(id);
+		if(stockService.existStock(id)) {
+			return new ResponseEntity<Stock>(stockService.findById(id),HttpStatus.OK);
+		}
+		return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
-	@PutMapping("/stock/{id}")
-	public Stock update(@RequestBody Stock stock,@PathVariable Integer id) {
-		Stock stockActualizado=stockService.findById(id).get();
+	@PutMapping("/stock")
+	public ResponseEntity<?> updateStock(@RequestBody Stock stock){
+		Stock stockResponse = null;
+		if(stock == null) {
+			return new ResponseEntity<>(null,HttpStatus.PRECONDITION_FAILED);
+		} 
+		if(!stockService.existStock(stock.getId())) {
+			return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		stockResponse = stockService.save(stock);
+		 
+		if (stockResponse== null) {
+			return new ResponseEntity<Stock>(stock,HttpStatus.UNPROCESSABLE_ENTITY);	
+		}
+		return new ResponseEntity<Stock>(stockResponse,HttpStatus.OK);
 		
-		stockActualizado.setCantidadActual(stock.getCantidadActual());
-		stockActualizado.setCantidadMax(stock.getCantidadMax());
-		stockActualizado.setCantidadMin(stock.getCantidadMin());
-		
-		return stockService.save(stock);
 	}
-	
-	
-	
-	@ExceptionHandler
-	public static void stockException(int cantidadActual){
-        if((cantidadActual>20)){
-            throw new ArithmeticException("Bajo Stock Del Producto");
-        }
-        else{
-            System.out.print("");
-        }
-    }
-	
-	
 }
-
-

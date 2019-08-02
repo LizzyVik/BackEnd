@@ -1,7 +1,7 @@
 package com.backendInventario.ServicesImp;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ public class StockServicesImp implements IStockService{
 	}
 
 	@Override
-	public Optional<Stock> findById(int id) {
-		return stockDao.findById(id);
+	public Stock findById(int id) {
+		return stockDao.findById(id).orElse(null);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class StockServicesImp implements IStockService{
 	public void deleteById(int id) {
 		stockDao.deleteById(id);
 		
+	}
+
+	@Override
+	public boolean existStock(Integer id) {
+		return stockDao.existsById(id);
 	}
     
 	
