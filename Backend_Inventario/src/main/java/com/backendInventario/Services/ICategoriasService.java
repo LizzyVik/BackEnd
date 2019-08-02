@@ -13,4 +13,6 @@ import com.backendInventario.ModelEntity.Categoria;
     public Categoria save(Categoria categoria);
 	
 	public void delete(int id);
+
+	public boolean existCategoria(Integer id);
 }

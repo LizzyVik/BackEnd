@@ -14,28 +14,33 @@ import com.backendInventario.Services.ICategoriasService;
 @Service
 public class CategoriaServicesImp implements  ICategoriasService{
 	@Autowired
-	private ICategoriaDAO CategoriaDao;
+	private ICategoriaDAO categoriaDao;
 	
 	public List<Categoria> findAll() {
-		return (List<Categoria>) CategoriaDao.findAll();
+		return (List<Categoria>) categoriaDao.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public Categoria findbyId(int id) {
-		return CategoriaDao.findById(id).orElse(null);
+		return categoriaDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public Categoria save(Categoria Categoria) {
-		return CategoriaDao.save(Categoria);
+		return categoriaDao.save(Categoria);
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public void delete(int id) {
-		CategoriaDao.deleteById(id);
+		categoriaDao.deleteById(id);
+	}
+
+	@Override
+	public boolean existCategoria(Integer id) {
+		return categoriaDao.existsById(id);
 	}
 
 }
