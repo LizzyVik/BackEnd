@@ -13,8 +13,7 @@ import com.backendInventario.ModelEntity.Cargo;
     public Cargo save(Cargo cargo);
 	
 	public void delete(int id);
-	
-	
-	
+
+	public boolean existCargo(Integer id);
 
 }

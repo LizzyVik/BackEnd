@@ -8,15 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cargo")
 public class Cargo {
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@Column
-	private String cargo ;
+	private String nombreCargo;
+	
+	
+	
 	
 	public int getId() {
 		return id;
@@ -25,14 +27,10 @@ public class Cargo {
 		this.id = id;
 	}
 	public String getCargo() {
-		return cargo;
+		return nombreCargo;
 	}
 	public void setCargo(String cargo) {
-		this.cargo = cargo;
+		this.nombreCargo= cargo;
 	}
-
-	
-	
-	
 	
 }
