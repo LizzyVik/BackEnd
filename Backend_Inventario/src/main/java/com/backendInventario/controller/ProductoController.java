@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import com.backendInventario.model.Producto;
-import com.backendInventario.service.IProductosService;
+import com.backendInventario.service.IProductoService;
 
 
 
@@ -22,7 +22,7 @@ import com.backendInventario.service.IProductosService;
 public class ProductoController {
 	
 	@Autowired
-	private IProductosService productoService;
+	private IProductoService productoService;
 	
 	@GetMapping("productos")
 	public ResponseEntity<?> getAllXProductos(){
