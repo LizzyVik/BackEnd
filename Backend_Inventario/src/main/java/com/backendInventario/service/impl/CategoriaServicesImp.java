@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backendInventario.modelo.Categoria;
+import com.backendInventario.model.Categoria;
 import com.backendInventario.repository.ICategoriaRepository;
-import com.backendInventario.service.ICategoriasService;
+import com.backendInventario.service.ICategoriaService;
 
 @Service
-public class CategoriaServicesImp implements  ICategoriasService{
+public class CategoriaServicesImp implements  ICategoriaService{
 	@Autowired
 	private ICategoriaRepository categoriaDao;
 	

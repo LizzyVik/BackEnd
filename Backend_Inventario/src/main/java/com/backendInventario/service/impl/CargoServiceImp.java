@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backendInventario.modelo.Cargo;
+import com.backendInventario.model.Cargo;
 import com.backendInventario.repository.ICargoRepository;
 import com.backendInventario.service.ICargoService;
 
