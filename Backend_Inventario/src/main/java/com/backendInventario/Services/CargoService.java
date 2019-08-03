@@ -1,10 +1,10 @@
-package com.backendInventario.Services;
+package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.ModelEntity.Cargo;
+import com.backendInventario.modelo.Cargo;
 
-    public interface CargoService {
+    public interface ICargoService {
 	
     public List<Cargo> findAll();
 	

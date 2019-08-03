@@ -1,4 +1,4 @@
-package com.backendInventario.Controller;
+package com.backendInventario.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.backendInventario.ModelEntity.Marca;
-import com.backendInventario.Services.IMarcaService;
+import com.backendInventario.modelo.Marca;
+import com.backendInventario.service.IMarcaService;
 
 @Controller("/marca")
 public class MarcaController {

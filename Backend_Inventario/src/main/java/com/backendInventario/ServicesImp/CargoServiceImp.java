@@ -1,21 +1,22 @@
 
-package com.backendInventario.ServicesImp;
+package com.backendInventario.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.backendInventario.DAO.CargoDao;
-import com.backendInventario.ModelEntity.Cargo;
-import com.backendInventario.Services.CargoService;
+
+import com.backendInventario.modelo.Cargo;
+import com.backendInventario.repository.ICargoRepository;
+import com.backendInventario.service.ICargoService;
 
 
 
 @Service
-public class CargoServiceImp implements  CargoService{
+public class CargoServiceImp implements  ICargoService{
 	
 	
 	@Autowired
-	private CargoDao cargoDao;
+	private ICargoRepository cargoDao;
 
 
 	@Override

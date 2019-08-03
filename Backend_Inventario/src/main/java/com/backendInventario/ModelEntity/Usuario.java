@@ -1,4 +1,4 @@
-package com.backendInventario.ModelEntity;
+package com.backendInventario.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,22 +12,17 @@ import javax.persistence.OneToOne;
 public class Usuario {
 	
 	@Id
-	@Column
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	@Column(unique = true)
 	private String rut;
-	@Column
 	private String nombre;
-	@Column
 	private String apellidos;
-	@Column
+	@Column(unique = true)
 	private String email;
-	@Column
 	private String password;
 	@OneToOne
 	private Cargo cargo;
-	@Column
 	private String sucursal;
 	
 	public int getId() {

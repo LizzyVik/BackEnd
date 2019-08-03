@@ -1,4 +1,4 @@
-package com.backendInventario.ModelEntity;
+package com.backendInventario.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +11,9 @@ import javax.persistence.Id;
 public class Cargo {
 	
 	@Id
-	@Column
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	@Column(unique = true)
 	private String nombreCargo;
 	
 	

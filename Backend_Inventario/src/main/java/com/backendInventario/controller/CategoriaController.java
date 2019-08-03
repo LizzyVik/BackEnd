@@ -1,4 +1,4 @@
-package com.backendInventario.Controller;
+package com.backendInventario.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.backendInventario.ModelEntity.Categoria;
-import com.backendInventario.Services.ICategoriasService;
+import com.backendInventario.modelo.Categoria;
+import com.backendInventario.service.ICategoriasService;
 
 	@Controller("/categoria")
 	public class CategoriaController {
