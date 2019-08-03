@@ -1,4 +1,4 @@
-package com.backendInventario.ModelEntity;
+package com.backendInventario.modelo;
 
 
 import javax.persistence.*;
@@ -8,10 +8,10 @@ public class Marca {
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column
-	private String marca;
+	@Column(unique = true)
+	private String nombreMarca;
 	
 	
 	public Integer getId() {
@@ -20,11 +20,11 @@ public class Marca {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getMarca() {
-		return marca;
+	public String getNombreMarca() {
+		return nombreMarca;
 	}
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setNombreMarca(String nombreMarca) {
+		this.nombreMarca = nombreMarca;
 	}
 	
 		

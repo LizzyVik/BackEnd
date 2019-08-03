@@ -1,4 +1,4 @@
-package com.backendInventario.Controller;
+package com.backendInventario.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
-import com.backendInventario.ModelEntity.Producto;
-import com.backendInventario.Services.IProductosService;
+import com.backendInventario.modelo.Producto;
+import com.backendInventario.service.IProductosService;
 
 
 

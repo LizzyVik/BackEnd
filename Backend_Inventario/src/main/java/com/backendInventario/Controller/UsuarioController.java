@@ -1,4 +1,4 @@
-package com.backendInventario.Controller;
+package com.backendInventario.controller;
 
 import java.util.List;
 
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.backendInventario.ModelEntity.Usuario;
-import com.backendInventario.Services.UsuarioService;
+import com.backendInventario.modelo.Usuario;
+import com.backendInventario.service.IUsuarioService;
 
 @Controller("/usuario")
 
 public class UsuarioController {
 	@Autowired
-	private UsuarioService userService;
+	private IUsuarioService userService;
 	@GetMapping("usuarios")
 	public ResponseEntity<?> getAllXUsuarios(){
 		List<Usuario> lstUsuarios = userService.findAll();

@@ -1,9 +1,9 @@
-package com.backendInventario.DAO;
+package com.backendInventario.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.backendInventario.ModelEntity.Categoria;
+import com.backendInventario.modelo.Categoria;
 
-public interface ICategoriaDAO extends CrudRepository<Categoria, Integer>{
+public interface ICategoriaRepository extends CrudRepository<Categoria, Integer>{
 
 }

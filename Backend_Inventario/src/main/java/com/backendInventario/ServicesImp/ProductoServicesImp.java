@@ -1,19 +1,20 @@
-package com.backendInventario.ServicesImp;
+package com.backendInventario.service.impl;
 
 import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.backendInventario.DAO.IProductoDAO;
-import com.backendInventario.ModelEntity.Producto;
-import com.backendInventario.Services.IProductosService;
+
+import com.backendInventario.modelo.Producto;
+import com.backendInventario.repository.IProductoRepository;
+import com.backendInventario.service.IProductosService;
 
 @Service
 public class ProductoServicesImp implements IProductosService {
 	
 	@Autowired
-	private IProductoDAO productoDao;
+	private IProductoRepository productoDao;
 
 	@Override
 	public List<Producto> findAll() {

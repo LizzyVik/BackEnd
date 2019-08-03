@@ -1,10 +1,10 @@
-package com.backendInventario.DAO;
+package com.backendInventario.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.backendInventario.ModelEntity.Cargo;
+import com.backendInventario.modelo.Cargo;
 
-public interface CargoDao  extends CrudRepository<Cargo, Integer>{
+public interface ICargoRepository  extends CrudRepository<Cargo, Integer>{
 
 
 }

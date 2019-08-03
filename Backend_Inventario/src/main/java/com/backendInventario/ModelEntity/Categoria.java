@@ -1,4 +1,4 @@
-package com.backendInventario.ModelEntity;
+package com.backendInventario.modelo;
 
 
 import javax.persistence.Column;
@@ -11,11 +11,10 @@ import javax.persistence.Id;
 public class Categoria {
 	
 	@Id	
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column
-	private String categoria;
+	@Column(unique = true)
+	private String nombreCategoria;
 	
 	
 	public Integer getId() {
@@ -24,16 +23,10 @@ public class Categoria {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getCategoria() {
-		return categoria;
+	public String getNombreCategoria() {
+		return nombreCategoria;
 	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
 	}
-	
-	
-	
-	
-	
-
 }

@@ -1,9 +1,9 @@
-package com.backendInventario.DAO;
+package com.backendInventario.repository;
 import org.springframework.data.repository.CrudRepository;
 
-import com.backendInventario.ModelEntity.Producto;
+import com.backendInventario.modelo.Producto;
 
 
-public interface IProductoDAO extends CrudRepository<Producto, Integer>{
+public interface IProductoRepository extends CrudRepository<Producto, Integer>{
 
 }

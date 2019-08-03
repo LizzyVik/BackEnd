@@ -1,10 +1,10 @@
-package com.backendInventario.Services;
+package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.ModelEntity.Usuario;;
+import com.backendInventario.modelo.Usuario;;
 
-    public interface UsuarioService {
+    public interface IUsuarioService {
 	
 	public List<Usuario> findAll();
 	

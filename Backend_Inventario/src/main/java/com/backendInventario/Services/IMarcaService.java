@@ -1,9 +1,8 @@
-package com.backendInventario.Services;
+package com.backendInventario.service;
 
 import java.util.List;
 
-
-import com.backendInventario.ModelEntity.Marca;
+import com.backendInventario.modelo.Marca;
 
 
 public interface IMarcaService {

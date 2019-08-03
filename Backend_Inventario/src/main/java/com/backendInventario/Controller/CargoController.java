@@ -1,4 +1,4 @@
-package com.backendInventario.Controller;
+package com.backendInventario.controller;
 
 import java.util.List;
 
@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-import com.backendInventario.ModelEntity.Cargo;
-import com.backendInventario.Services.CargoService;
+import com.backendInventario.modelo.Cargo;
+import com.backendInventario.service.ICargoService;
 
 
 @Controller("/cargo")
 public class CargoController {
 		
 		@Autowired
-		private CargoService cargoService;
+		private ICargoService cargoService;
 		
 		@GetMapping("cargos")
 		public ResponseEntity<?> getAllXCargos(){

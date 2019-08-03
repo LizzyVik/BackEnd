@@ -1,18 +1,18 @@
-package com.backendInventario.ServicesImp;
+package com.backendInventario.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backendInventario.DAO.IMarcaDAO;
-import com.backendInventario.ModelEntity.Marca;
-import com.backendInventario.Services.IMarcaService;
+import com.backendInventario.modelo.Marca;
+import com.backendInventario.repository.IMarcaRepository;
+import com.backendInventario.service.IMarcaService;
 
 @Service
 public class MarcaServicesImp implements IMarcaService{
 	
 	@Autowired
-	private IMarcaDAO marcaDao;
+	private IMarcaRepository marcaDao;
 
 	@Override
 	public List<Marca> findAll() {

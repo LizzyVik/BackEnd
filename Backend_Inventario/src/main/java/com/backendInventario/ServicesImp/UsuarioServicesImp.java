@@ -1,19 +1,18 @@
-package com.backendInventario.ServicesImp;
+package com.backendInventario.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.backendInventario.DAO.UsuarioDao;
-import com.backendInventario.ModelEntity.Usuario;
-import com.backendInventario.Services.UsuarioService;
+import com.backendInventario.modelo.Usuario;
+import com.backendInventario.repository.IUsuarioRepository;
+import com.backendInventario.service.IUsuarioService;
 @Service
-public class UsuarioServicesImp implements UsuarioService {
+public class UsuarioServicesImp implements IUsuarioService {
 
 	@Autowired 
-	private UsuarioDao daoUser;
+	private IUsuarioRepository daoUser;
 	
 	@Override
 	public List<Usuario> findAll() {

@@ -1,9 +1,9 @@
-package com.backendInventario.DAO;
+package com.backendInventario.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.backendInventario.ModelEntity.Marca;
+import com.backendInventario.modelo.Marca;
 
-public interface IMarcaDAO extends CrudRepository<Marca, Integer> {
+public interface IMarcaRepository extends CrudRepository<Marca, Integer> {
 
 }

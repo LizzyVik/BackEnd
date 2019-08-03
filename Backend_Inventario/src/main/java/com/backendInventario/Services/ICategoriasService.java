@@ -1,8 +1,8 @@
-package com.backendInventario.Services;
+package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.ModelEntity.Categoria;
+import com.backendInventario.modelo.Categoria;
 
     public interface ICategoriasService {
 

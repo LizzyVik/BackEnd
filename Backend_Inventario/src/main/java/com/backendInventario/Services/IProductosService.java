@@ -1,8 +1,8 @@
-package com.backendInventario.Services;
+package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.ModelEntity.Producto;
+import com.backendInventario.modelo.Producto;
 
     public interface IProductosService {
 	
