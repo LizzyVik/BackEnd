@@ -2,7 +2,7 @@ package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.modelo.Producto;
+import com.backendInventario.model.Producto;
 
     public interface IProductosService {
 	

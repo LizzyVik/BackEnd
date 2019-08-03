@@ -1,5 +1,4 @@
-package com.backendInventario.modelo;
-
+package com.backendInventario.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,26 +6,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
-public class Categoria {
+public class Cargo {
 	
-	@Id	
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	@Column(unique = true)
-	private String nombreCategoria;
+	private String nombreCargo;
 	
 	
-	public Integer getId() {
+	
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNombreCategoria() {
-		return nombreCategoria;
+	public String getCargo() {
+		return nombreCargo;
 	}
-	public void setNombreCategoria(String nombreCategoria) {
-		this.nombreCategoria = nombreCategoria;
+	public void setCargo(String cargo) {
+		this.nombreCargo= cargo;
 	}
+	
 }

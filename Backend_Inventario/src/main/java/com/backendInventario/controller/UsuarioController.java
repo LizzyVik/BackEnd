@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.backendInventario.modelo.Usuario;
+import com.backendInventario.model.Usuario;
 import com.backendInventario.service.IUsuarioService;
 
 @Controller("/usuario")

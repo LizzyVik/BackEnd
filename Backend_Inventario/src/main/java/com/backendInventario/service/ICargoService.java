@@ -2,7 +2,7 @@ package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.modelo.Cargo;
+import com.backendInventario.model.Cargo;
 
     public interface ICargoService {
 	

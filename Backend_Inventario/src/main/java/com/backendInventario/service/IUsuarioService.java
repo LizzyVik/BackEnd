@@ -2,7 +2,7 @@ package com.backendInventario.service;
 
 import java.util.List;
 
-import com.backendInventario.modelo.Usuario;;
+import com.backendInventario.model.Usuario;;
 
     public interface IUsuarioService {
 	

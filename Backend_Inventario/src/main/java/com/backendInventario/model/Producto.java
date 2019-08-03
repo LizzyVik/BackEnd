@@ -1,4 +1,4 @@
-package com.backendInventario.modelo;
+package com.backendInventario.model;
 
 
 import javax.persistence.Entity;

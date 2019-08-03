@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.backendInventario.modelo.Categoria;
-import com.backendInventario.service.ICategoriasService;
+import com.backendInventario.model.Categoria;
+import com.backendInventario.service.ICategoriaService;
 
 	@Controller("/categoria")
 	public class CategoriaController {
 		
 		@Autowired
-		private ICategoriasService categoriaService;
+		private ICategoriaService categoriaService;
 		
 		@GetMapping("categorias")
 		public ResponseEntity<?> getAllXCategorias(){

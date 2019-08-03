@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.backendInventario.modelo.Cargo;
+import com.backendInventario.model.Cargo;
 import com.backendInventario.service.ICargoService;
 
 
