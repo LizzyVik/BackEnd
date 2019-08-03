@@ -1,5 +1,6 @@
 package com.backendInventario;
 
+//Autores Rene Allende, Eliana Gutierres,  Joselyn Pino
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
