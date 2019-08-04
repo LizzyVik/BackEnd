@@ -12,32 +12,40 @@ import com.backendInventario.service.IUsuarioService;
 public class UsuarioServicesImp implements IUsuarioService {
 
 	@Autowired 
-	private IUsuarioRepository daoUser;
+	private IUsuarioRepository usuariorepository;
 	
 	@Override
 	public List<Usuario> findAll() {
-		return (List<Usuario>) daoUser.findAll();
+		return (List<Usuario>) usuariorepository.findAll();
 	}
 
 	@Override
 	public Usuario findbyId(int id) {
-		return daoUser.findById(id).orElse(null);
+		return usuariorepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Usuario save(Usuario user) {
-		return daoUser.save(user);
+		return usuariorepository.save(user);
 	}
 
 	@Override
 	public void delete(int id) {
-		daoUser.deleteById(id);
+		usuariorepository.deleteById(id);
 		
 	}
 
 	@Override
 	public boolean existUsuario(Integer id) {
-		return daoUser.existsById(id);
+		return usuariorepository.existsById(id);
 	}
-
+	
+	@Override
+	public boolean existUserByEmailAndPassword(Usuario usuario) {
+		return usuariorepository.existUserByEmailAndPassword(usuario.getEmail(), usuario.getPassword());
+	}
+	@Override
+	public Usuario findUserByEmailAndPassword(Usuario usuario) {
+		return usuariorepository.findUserByEmailAndPassword(usuario.getEmail(), usuario.getPassword());
+	}
 }
