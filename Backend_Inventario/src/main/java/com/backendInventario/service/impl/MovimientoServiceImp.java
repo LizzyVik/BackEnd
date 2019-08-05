@@ -1,23 +1,26 @@
 package com.backendInventario.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.backendInventario.Enum.ETipoMovimiento;
 import com.backendInventario.model.Movimiento;
 import com.backendInventario.repository.IMovimientoRepository;
 import com.backendInventario.service.IMovimientoService;
 
+@Service
 public class MovimientoServiceImp  implements IMovimientoService{
 
 	@Autowired
 	private IMovimientoRepository movimientorepository;
 	
-	public Movimiento crearVenta(Movimiento movimiento){
-		movimiento.setTipoMovimiento(ETipoMovimiento.Venta.getCodTipoVenta());
-		return movimientorepository.save(movimiento);
+	
+	@Override
+	public void delete(Integer id) {
+		movimientorepository.deleteById(id);
+		
 	}
-	public Movimiento crearCompra(Movimiento movimiento){
-		movimiento.setTipoMovimiento(ETipoMovimiento.Venta.getCodTipoVenta());
+	@Override
+	public Movimiento save(Movimiento movimiento) {
 		return movimientorepository.save(movimiento);
 	}
 }

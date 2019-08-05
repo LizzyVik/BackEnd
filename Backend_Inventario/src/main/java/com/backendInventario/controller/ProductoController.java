@@ -29,10 +29,10 @@ public class ProductoController {
 		List<Producto> lstProductos = productoService.findAll();
 		if (lstProductos == null) {
 
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se pueden listar productos", HttpStatus.NOT_FOUND);
 		} else {
 			if (lstProductos.isEmpty()) {
-				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+				return new ResponseEntity<String>("Lista de productos vacía", HttpStatus.NOT_FOUND);
 			}
 		}
 		return new ResponseEntity<List<?>>(lstProductos, HttpStatus.OK);
@@ -50,11 +50,11 @@ public class ProductoController {
 	public ResponseEntity<?> create(@RequestBody Producto producto) {
 		Producto productoResponse = null;
 		if (producto == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("Error al crear producto", HttpStatus.PRECONDITION_FAILED);
 		} else {
 			productoResponse = productoService.save(producto);
 			if (productoResponse == null) {
-				return new ResponseEntity<Producto>(productoResponse, HttpStatus.UNPROCESSABLE_ENTITY);
+				return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 			}
 		}
 		return new ResponseEntity<Producto>(producto, HttpStatus.CREATED);
@@ -66,22 +66,22 @@ public class ProductoController {
 		if (productoService.existProducto(id)) {
 			return new ResponseEntity<Producto>(productoService.findbyId(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("No se pudo eliminar el producto", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/producto")
 	public ResponseEntity<?> updateProducto(@RequestBody Producto producto) {
 		Producto productoResponse = null;
 		if (producto == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("Error al actualizar producto", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (!productoService.existProducto(producto.getId())) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se reconoce la Id del producto", HttpStatus.NOT_FOUND);
 		}
 		productoResponse = productoService.save(producto);
 
 		if (productoResponse == null) {
-			return new ResponseEntity<Producto>(producto, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<String>("Error al guardar producto", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		return new ResponseEntity<Producto>(productoResponse, HttpStatus.OK);
 

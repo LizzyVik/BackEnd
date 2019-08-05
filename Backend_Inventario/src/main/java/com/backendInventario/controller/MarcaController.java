@@ -29,10 +29,10 @@ public class MarcaController {
 		List<Marca> lstMarcas = marcaService.findAll();
 		if (lstMarcas == null) {
 
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se puede listar marcas", HttpStatus.NOT_FOUND);
 		} else {
 			if (lstMarcas.isEmpty()) {
-				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+				return new ResponseEntity<String>("Listas de marcas vacía", HttpStatus.NOT_FOUND);
 			}
 		}
 		return new ResponseEntity<List<?>>(lstMarcas, HttpStatus.OK);
@@ -43,21 +43,21 @@ public class MarcaController {
 		if (marcaService.existMarca(id)) {
 			return new ResponseEntity<Marca>(marcaService.findById(id), HttpStatus.CREATED);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Id de marca no encontrada", HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping("/marca/add")
 	public ResponseEntity<?> create(@RequestBody Marca marca) {
 		Marca marcaResponse = null;
 		if (marca == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede crear marca", HttpStatus.PRECONDITION_FAILED);
 		} else {
 			marcaResponse = marcaService.save(marca);
 			if (marcaResponse == null) {
 				return new ResponseEntity<Marca>(marcaResponse, HttpStatus.CREATED);
 			}
 		}
-		return new ResponseEntity<Marca>(marca, HttpStatus.UNPROCESSABLE_ENTITY);
+		return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 
 	@DeleteMapping("/marca/{id}")
@@ -66,23 +66,24 @@ public class MarcaController {
 		if (marcaService.existMarca(id)) {
 			return new ResponseEntity<Marca>(marcaService.findById(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Id de marca no encontrada", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/marca")
 	public ResponseEntity<?> updateMarca(@RequestBody Marca marca) {
 		Marca marcaResponse = null;
 		if (marca == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede actualizar la información", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (!marcaService.existMarca(marca.getId())) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Id de marca no encontrada", HttpStatus.NOT_FOUND);
 		}
 		marcaResponse = marcaService.save(marca);
 
 		if (marcaResponse == null) {
-			return new ResponseEntity<Marca>(marca, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
+		else
 		return new ResponseEntity<Marca>(marcaResponse, HttpStatus.OK);
 
 	}

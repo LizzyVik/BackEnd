@@ -29,10 +29,10 @@ public class CategoriaController {
 		List<Categoria> lstCategorias = categoriaService.findAll();
 		if (lstCategorias == null) {
 
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se pueden listar categorías", HttpStatus.NOT_FOUND);
 		} else {
 			if (lstCategorias.isEmpty()) {
-				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+				return new ResponseEntity<String>("Lista de categorías vacía", HttpStatus.NOT_FOUND);
 			}
 		}
 		return new ResponseEntity<List<?>>(lstCategorias, HttpStatus.OK);
@@ -43,18 +43,18 @@ public class CategoriaController {
 		if (categoriaService.existCategoria(id)) {
 			return new ResponseEntity<Categoria>(categoriaService.findbyId(id), HttpStatus.CREATED);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Id de categoría no encontrada", HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping("/categoria/add")
 	public ResponseEntity<?> create(@RequestBody Categoria categoria) {
 		Categoria categoriaresponse = null;
 		if (categoria == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede agregar categoría", HttpStatus.PRECONDITION_FAILED);
 		}
 		categoriaresponse = categoriaService.save(categoria);
 		if (categoriaresponse == null) {
-			return new ResponseEntity<Categoria>(categoria, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		return new ResponseEntity<Categoria>(categoriaresponse, HttpStatus.OK);
 	}
@@ -65,22 +65,22 @@ public class CategoriaController {
 		if (categoriaService.existCategoria(id)) {
 			return new ResponseEntity<Categoria>(categoriaService.findbyId(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Id de categoría no encontrada", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/categoria")
 	public ResponseEntity<?> updateCategoria(@RequestBody Categoria categoria) {
 		Categoria categoriaresponse = null;
 		if (categoria == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede actualizar", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (!categoriaService.existCategoria(categoria.getId())) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Id no encontrada", HttpStatus.NOT_FOUND);
 		}
 		categoriaresponse = categoriaService.save(categoria);
 
 		if (categoriaresponse == null) {
-			return new ResponseEntity<Categoria>(categoria, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<String>("No se pudo ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		return new ResponseEntity<Categoria>(categoriaresponse, HttpStatus.OK);
 

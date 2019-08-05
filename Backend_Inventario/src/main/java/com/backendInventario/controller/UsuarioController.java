@@ -29,10 +29,10 @@ public class UsuarioController {
 		List<Usuario> lstUsuarios = userService.findAll();
 		if (lstUsuarios == null) {
 
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se puede listar usuarios", HttpStatus.NOT_FOUND);
 		} else {
 			if (lstUsuarios.isEmpty()) {
-				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+				return new ResponseEntity<>("La lista de usuarios está vacía", HttpStatus.NOT_FOUND);
 			}
 		}
 		return new ResponseEntity<List<?>>(lstUsuarios, HttpStatus.OK);
@@ -43,21 +43,21 @@ public class UsuarioController {
 		if (userService.existUsuario(id)) {
 			return new ResponseEntity<Usuario>(userService.findbyId(id), HttpStatus.CREATED);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("No se reconoce la Id del usuario", HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping("/usuario/add")
 	public ResponseEntity<?> create(@RequestBody Usuario usuario) {
 		Usuario userResponse = null;
 		if (usuario == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("Error al agregar usuario", HttpStatus.PRECONDITION_FAILED);
 		} else {
 			userResponse = userService.save(usuario);
 			if (userResponse == null) {
 				return new ResponseEntity<Usuario>(userResponse, HttpStatus.CREATED);
 			}
 		}
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.UNPROCESSABLE_ENTITY);
+		return new ResponseEntity<String>("No se pudo procesar la información", HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 
 	@PostMapping("/usuario/validate")
@@ -68,7 +68,7 @@ public class UsuarioController {
 			if(userService.existUserByEmailAndPassword(usuario)==1) {
 				return new ResponseEntity<Usuario>(userService.findUserByEmailAndPassword(usuario), HttpStatus.CREATED);
 			}
-			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+			return new ResponseEntity<String>("Transacción no autorizada", HttpStatus.FORBIDDEN);
 		}
 	}
 	@DeleteMapping("/usuario/{id}")
@@ -77,22 +77,23 @@ public class UsuarioController {
 		if (userService.existUsuario(id)) {
 			return new ResponseEntity<Usuario>(userService.findbyId(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("No se reconoce la Id de usuario", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/usuario")
 	public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
 		Usuario userResponse = null;
 		if (usuario == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede actualizar usuario", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (!userService.existUsuario(usuario.getId())) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se reconoce la Id de usuario", HttpStatus.NOT_FOUND);
 		}
+		else
 		userResponse = userService.save(usuario);
 
 		if (userResponse == null) {
-			return new ResponseEntity<Usuario>(usuario, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		return new ResponseEntity<Usuario>(userResponse, HttpStatus.OK);
 

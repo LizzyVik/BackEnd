@@ -29,10 +29,10 @@ public class CargoController {
 		List<Cargo> lstCargos = cargoService.findAll();
 		if (lstCargos == null) {
 
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No se pueden listar cargos", HttpStatus.NOT_FOUND);
 		} else {
 			if (lstCargos.isEmpty()) {
-				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+				return new ResponseEntity<String>("Lista de cargos vacía", HttpStatus.NOT_FOUND);
 			}
 		}
 		return new ResponseEntity<List<?>>(lstCargos, HttpStatus.OK);
@@ -43,20 +43,20 @@ public class CargoController {
 		if (cargoService.existCargo(id)) {
 			return new ResponseEntity<Cargo>(cargoService.findbyId(id), HttpStatus.CREATED);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Id de cargo no encontrada", HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping("/cargo/add")
 	public ResponseEntity<?> create(@RequestBody Cargo cargo) {
 		Cargo cargoResponse = null;
 		if (cargo == null) {
-			return new ResponseEntity<>("No se puede ejecutar la creacion del Cargo", HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede ejecutar la creacion del Cargo", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (cargo.getId() != null) {
-			return new ResponseEntity<>("No puede ingresar un cargo con el mismo Id", HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No puede ingresar un cargo con el mismo Id", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (cargo.getNombreCargo() == null) {
-			return new ResponseEntity<>("EL nombre del Cargo no puede estar nulo", HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("EL nombre del Cargo no puede estar nulo", HttpStatus.PRECONDITION_FAILED);
 		}
 		cargoResponse = cargoService.save(cargo);
 		if (cargoResponse == null) {
@@ -71,22 +71,22 @@ public class CargoController {
 		if (cargoService.existCargo(id)) {
 			return new ResponseEntity<Cargo>(cargoService.findbyId(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Id de cargo no encontrada", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/cargo")
 	public ResponseEntity<?> updateCargo(@RequestBody Cargo cargo) {
 		Cargo cargoresponse = null;
 		if (cargo == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se puede actualizar cargo", HttpStatus.PRECONDITION_FAILED);
 		}
 		if (!cargoService.existCargo(cargo.getId())) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Id duplicada, transacción denegada", HttpStatus.NOT_FOUND);
 		}
 		cargoresponse = cargoService.save(cargo);
 
 		if (cargoresponse == null) {
-			return new ResponseEntity<Cargo>(cargo, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		return new ResponseEntity<Cargo>(cargoresponse, HttpStatus.OK);
 

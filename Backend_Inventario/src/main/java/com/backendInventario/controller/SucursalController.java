@@ -35,13 +35,13 @@ public class SucursalController {
 	}
 	
 	@GetMapping("sucursales")
-	public ResponseEntity<List<Sucursal>> getAllSucursales(){
+	public ResponseEntity<?> getAllSucursales(){
 		List<Sucursal> lstSucursal = sucursalservice.getAllSucursales();
 		if(lstSucursal==null) {
-			return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+			return new  ResponseEntity<String>("No se puede listar",HttpStatus.NOT_FOUND);
 		}
 		if(lstSucursal.isEmpty()) {
-			return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+			return new  ResponseEntity<String>("Lista de sucursales vacía",HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<Sucursal>>(lstSucursal,HttpStatus.OK);
 	}
@@ -58,14 +58,14 @@ public class SucursalController {
 	public ResponseEntity<?> actualizarSucursal(@RequestBody Sucursal sucursal){
 		Sucursal sucursalResponse = sucursalservice.updateSucursal(sucursal);
 		if(sucursalResponse==null) {
-			return new  ResponseEntity<String>((String)"No se encuentra sucursal para Actualizar",HttpStatus.NOT_FOUND);
+			return new  ResponseEntity<String>("No se encuentra sucursal para Actualizar",HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Sucursal>(sucursalResponse,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("sucursal/{id}")
-	public ResponseEntity<Sucursal> updateSucursal(@Param("id")Integer id){
+	public ResponseEntity<?> updateSucursal(@Param("id")Integer id){
 		sucursalservice.deleteSucursal(id);
-		return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+		return new  ResponseEntity<String>("Id no reconocido, no se puede eliminar sucursal",HttpStatus.NOT_FOUND);
 	}
 }
