@@ -15,21 +15,18 @@ public class Cargo {
 	private Integer id;
 	@Column(unique = true)
 	private String nombreCargo;
-	
-	
-	
-	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getCargo() {
+	public String getNombreCargo() {
 		return nombreCargo;
 	}
-	public void setCargo(String cargo) {
-		this.nombreCargo= cargo;
+	public void setNombreCargo(String nombreCargo) {
+		this.nombreCargo = nombreCargo;
 	}
+
 	
 }

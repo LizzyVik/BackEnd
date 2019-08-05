@@ -50,14 +50,19 @@ public class CargoController {
 	public ResponseEntity<?> create(@RequestBody Cargo cargo) {
 		Cargo cargoResponse = null;
 		if (cargo == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
-		} else {
-			cargoResponse = cargoService.save(cargo);
-			if (cargoResponse == null) {
-				return new ResponseEntity<Cargo>(cargoResponse, HttpStatus.CREATED);
-			}
+			return new ResponseEntity<>("No se puede ejecutar la creacion del Cargo", HttpStatus.PRECONDITION_FAILED);
 		}
-		return new ResponseEntity<Cargo>(cargo, HttpStatus.UNPROCESSABLE_ENTITY);
+		if (cargo.getId() != null) {
+			return new ResponseEntity<>("No puede ingresar un cargo con el mismo Id", HttpStatus.PRECONDITION_FAILED);
+		}
+		if (cargo.getNombreCargo() == null) {
+			return new ResponseEntity<>("EL nombre del Cargo no puede estar nulo", HttpStatus.PRECONDITION_FAILED);
+		}
+		cargoResponse = cargoService.save(cargo);
+		if (cargoResponse == null) {
+			return new ResponseEntity<String>("No se puede crear Cargo", HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		return new ResponseEntity<Cargo>(cargoResponse, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/cargo/{id}")

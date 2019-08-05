@@ -16,7 +16,7 @@ import com.backendInventario.model.Usuario;;
 
 	public boolean existUsuario(Integer id);
 
-	public boolean existUserByEmailAndPassword(Usuario usuario);
+	public Integer existUserByEmailAndPassword(Usuario usuario);
 
 	public Usuario findUserByEmailAndPassword(Usuario usuario);
 

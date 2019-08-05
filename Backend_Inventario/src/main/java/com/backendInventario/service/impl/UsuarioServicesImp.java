@@ -41,7 +41,7 @@ public class UsuarioServicesImp implements IUsuarioService {
 	}
 	
 	@Override
-	public boolean existUserByEmailAndPassword(Usuario usuario) {
+	public Integer existUserByEmailAndPassword(Usuario usuario) {
 		return usuariorepository.existUserByEmailAndPassword(usuario.getEmail(), usuario.getPassword());
 	}
 	@Override

@@ -54,10 +54,10 @@ public class ProductoController {
 		} else {
 			productoResponse = productoService.save(producto);
 			if (productoResponse == null) {
-				return new ResponseEntity<Producto>(productoResponse, HttpStatus.CREATED);
+				return new ResponseEntity<Producto>(productoResponse, HttpStatus.UNPROCESSABLE_ENTITY);
 			}
 		}
-		return new ResponseEntity<Producto>(producto, HttpStatus.UNPROCESSABLE_ENTITY);
+		return new ResponseEntity<Producto>(producto, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/producto/{id}")

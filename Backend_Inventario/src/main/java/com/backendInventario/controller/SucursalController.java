@@ -2,6 +2,8 @@ package com.backendInventario.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -21,11 +23,13 @@ public class SucursalController {
 	@Autowired
 	private ISucursalService sucursalservice;
 	
+	private static final Logger logger = LogManager.getLogger(SucursalController.class);
+	
 	@GetMapping("sucursal/{id}")
-	public ResponseEntity<Sucursal> getSucursalById(@Param("id")Integer id){
+	public ResponseEntity<?> getSucursalById(@Param("id")Integer id){
 		Sucursal sucursal = sucursalservice.getSucursales(id);
 		if(sucursal==null) {
-			return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("No existe sucursal",HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Sucursal>(sucursal,HttpStatus.OK);
 	}
@@ -43,18 +47,18 @@ public class SucursalController {
 	}
 	
 	@PostMapping("sucursal/add")
-	public ResponseEntity<Sucursal> createSucursal(@RequestBody Sucursal sucursal){
+	public ResponseEntity<?> createSucursal(@RequestBody Sucursal sucursal){
 		Sucursal sucursalResponse = sucursalservice.createSucursal(sucursal);
 		if(sucursalResponse==null) {
-			return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+			return new  ResponseEntity<String>("No se puede crear Sucursal",HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		return new ResponseEntity<Sucursal>(sucursalResponse,HttpStatus.OK);
 	}
 	@PutMapping("sucursal/edit")
-	public ResponseEntity<Sucursal> actualizarSucursal(@RequestBody Sucursal sucursal){
+	public ResponseEntity<?> actualizarSucursal(@RequestBody Sucursal sucursal){
 		Sucursal sucursalResponse = sucursalservice.updateSucursal(sucursal);
 		if(sucursalResponse==null) {
-			return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+			return new  ResponseEntity<String>((String)"No se encuentra sucursal para Actualizar",HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Sucursal>(sucursalResponse,HttpStatus.OK);
 	}

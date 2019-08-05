@@ -51,13 +51,12 @@ public class CategoriaController {
 		Categoria categoriaresponse = null;
 		if (categoria == null) {
 			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
-		} else {
-			categoriaresponse = categoriaService.save(categoria);
-			if (categoriaresponse == null) {
-				return new ResponseEntity<Categoria>(categoriaresponse, HttpStatus.CREATED);
-			}
 		}
-		return new ResponseEntity<Categoria>(categoria, HttpStatus.UNPROCESSABLE_ENTITY);
+		categoriaresponse = categoriaService.save(categoria);
+		if (categoriaresponse == null) {
+			return new ResponseEntity<Categoria>(categoria, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		return new ResponseEntity<Categoria>(categoriaresponse, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/categoria/{id}")

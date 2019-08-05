@@ -61,11 +61,11 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/usuario/validate")
-	public ResponseEntity<Usuario> validateUser(@RequestBody Usuario usuario) {
+	public ResponseEntity<?> validateUser(@RequestBody Usuario usuario) {
 		if (usuario == null) {
-			return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>("No se recibio E-mail y Password", HttpStatus.PRECONDITION_FAILED);
 		} else {
-			if(userService.existUserByEmailAndPassword(usuario)) {
+			if(userService.existUserByEmailAndPassword(usuario)==1) {
 				return new ResponseEntity<Usuario>(userService.findUserByEmailAndPassword(usuario), HttpStatus.CREATED);
 			}
 			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
