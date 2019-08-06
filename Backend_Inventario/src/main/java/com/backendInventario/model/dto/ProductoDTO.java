@@ -1,28 +1,16 @@
-package com.backendInventario.model;
+package com.backendInventario.model.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-@Entity
-public class Producto {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductoDTO {
+	
 	private Integer id;
 	private String modelo;
-	@ManyToOne
-	private Marca marca;
+	private MarcaDTO marca;
 	private String color;
-	@ManyToOne
-	private Categoria categoria;
+	private CategoriaDTO categoria;
 	private Integer precioVenta;
 	private Integer cantidadMax;
 	private Integer cantidadMin;
-	@ManyToOne
-	private Usuario usuarioReg;
+	private UsuarioDTO usuarioReg;
 	
 	public Integer getId() {
 		return id;
@@ -36,10 +24,10 @@ public class Producto {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public Marca getMarca() {
+	public MarcaDTO getMarca() {
 		return marca;
 	}
-	public void setMarca(Marca marca) {
+	public void setMarca(MarcaDTO marca) {
 		this.marca = marca;
 	}
 	public String getColor() {
@@ -48,10 +36,10 @@ public class Producto {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public Categoria getCategoria() {
+	public CategoriaDTO getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(CategoriaDTO categoria) {
 		this.categoria = categoria;
 	}
 	public Integer getPrecioVenta() {
@@ -72,10 +60,10 @@ public class Producto {
 	public void setCantidadMin(Integer cantidadMin) {
 		this.cantidadMin = cantidadMin;
 	}
-	public Usuario getUsuarioReg() {
+	public UsuarioDTO getUsuarioReg() {
 		return usuarioReg;
 	}
-	public void setUsuarioReg(Usuario usuarioReg) {
+	public void setUsuarioReg(UsuarioDTO usuarioReg) {
 		this.usuarioReg = usuarioReg;
-	}	
+	}
 }

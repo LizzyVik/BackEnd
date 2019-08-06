@@ -1,31 +1,20 @@
-package com.backendInventario.model;
+package com.backendInventario.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.backendInventario.model.dto.CargoDTO;
+import com.backendInventario.model.dto.SucursalDTO;
+import com.backendInventario.model.dto.UsuarioDTO;
 
-@Entity
-public class Usuario {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class UsuarioDTO {
 	private Integer id;
-	@Column(unique = true)
 	private String rut;
 	private String nombre;
 	private String apellidos;
-	@Column(unique = true)
 	private String email;
 	private String password;
-//	@ManyToOne
-//	private Cargo cargo;
-//	@ManyToOne
-//	private Sucursal sucursal;
-//	@ManyToOne
-//	private Usuario usuarioReg;
+//	private CargoDTO cargo;
+//	private SucursalDTO sucursal;
+//	private UsuarioDTO usuarioReg;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -62,22 +51,22 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public Cargo getCargo() {
+//	public CargoDTO getCargo() {
 //		return cargo;
 //	}
-//	public void setCargo(Cargo cargo) {
+//	public void setCargo(CargoDTO cargo) {
 //		this.cargo = cargo;
 //	}
-//	public Sucursal getSucursal() {
+//	public SucursalDTO getSucursal() {
 //		return sucursal;
 //	}
-//	public void setSucursal(Sucursal sucursal) {
+//	public void setSucursal(SucursalDTO sucursal) {
 //		this.sucursal = sucursal;
 //	}
-//	public Usuario getUsuarioReg() {
+//	public UsuarioDTO getUsuarioReg() {
 //		return usuarioReg;
 //	}
-//	public void setUsuarioReg(Usuario usuarioReg) {
+//	public void setUsuarioReg(UsuarioDTO usuarioReg) {
 //		this.usuarioReg = usuarioReg;
 //	}
 }

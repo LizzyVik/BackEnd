@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Sucursal {
@@ -14,6 +15,8 @@ public class Sucursal {
 	private Integer id;
 	@Column(unique = true)
 	private String nombreSucursal;
+	@ManyToOne
+	private Usuario usuarioReg;
 	
 	public Integer getId() {
 		return id;
@@ -26,6 +29,12 @@ public class Sucursal {
 	}
 	public void setNombreSucursal(String nombreSucursal) {
 		this.nombreSucursal = nombreSucursal;
+	}
+	public Usuario getUsuarioReg() {
+		return usuarioReg;
+	}
+	public void setUsuarioReg(Usuario usuarioReg) {
+		this.usuarioReg = usuarioReg;
 	}
 	
 	

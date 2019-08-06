@@ -1,19 +1,10 @@
-package com.backendInventario.model;
+package com.backendInventario.model.dto;
 
-
-import javax.persistence.*;
-
-@Entity
-public class Marca {
+public class MarcaDTO {
 	
-	@Id
-	@Column
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(unique = true)
 	private String nombreMarca;
-	@ManyToOne
-	private Usuario usuarioReg;
+	private UsuarioDTO usuarioReg;
 	
 	public Integer getId() {
 		return id;
@@ -27,11 +18,10 @@ public class Marca {
 	public void setNombreMarca(String nombreMarca) {
 		this.nombreMarca = nombreMarca;
 	}
-	public Usuario getUsuarioReg() {
+	public UsuarioDTO getUsuarioReg() {
 		return usuarioReg;
 	}
-	public void setUsuarioReg(Usuario usuarioReg) {
+	public void setUsuarioReg(UsuarioDTO usuarioReg) {
 		this.usuarioReg = usuarioReg;
 	}
 }
-

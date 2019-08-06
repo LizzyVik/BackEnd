@@ -1,29 +1,18 @@
-package com.backendInventario.model;
+package com.backendInventario.model.dto;
 
 import java.sql.Date;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-@Entity
-public class Movimiento {
-	@Id	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class MovimientoDTO {
+	
 	private Integer id;
 	private Date fechaRegistro;
 	private Integer tipoMovimiento;
 	private String numTransaccion;
-	@ManyToOne
-	private Producto producto;
+	private ProductoDTO producto;
 	private Integer cantidad;
-	@ManyToOne
-	private Sucursal sucursal;
-	@ManyToOne
-	private Usuario usuarioReg;
+	private SucursalDTO sucursal;
+	private UsuarioDTO usuarioReg;
 	
 	public Integer getId() {
 		return id;
@@ -49,10 +38,10 @@ public class Movimiento {
 	public void setNumTransaccion(String numTransaccion) {
 		this.numTransaccion = numTransaccion;
 	}
-	public Producto getProducto() {
+	public ProductoDTO getProducto() {
 		return producto;
 	}
-	public void setProducto(Producto producto) {
+	public void setProducto(ProductoDTO producto) {
 		this.producto = producto;
 	}
 	public Integer getCantidad() {
@@ -61,16 +50,16 @@ public class Movimiento {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	public Sucursal getSucursal() {
+	public SucursalDTO getSucursal() {
 		return sucursal;
 	}
-	public void setSucursal(Sucursal sucursal) {
+	public void setSucursal(SucursalDTO sucursal) {
 		this.sucursal = sucursal;
 	}
-	public Usuario getUsuarioReg() {
+	public UsuarioDTO getUsuarioReg() {
 		return usuarioReg;
 	}
-	public void setUsuarioReg(Usuario usuarioReg) {
+	public void setUsuarioReg(UsuarioDTO usuarioReg) {
 		this.usuarioReg = usuarioReg;
 	}
 }

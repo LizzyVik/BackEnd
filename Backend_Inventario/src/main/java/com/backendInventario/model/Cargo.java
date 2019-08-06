@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -15,6 +16,9 @@ public class Cargo {
 	private Integer id;
 	@Column(unique = true)
 	private String nombreCargo;
+	@ManyToOne
+	private Usuario usuarioReg;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -27,6 +31,10 @@ public class Cargo {
 	public void setNombreCargo(String nombreCargo) {
 		this.nombreCargo = nombreCargo;
 	}
-
-	
+	public Usuario getUsuarioReg() {
+		return usuarioReg;
+	}
+	public void setUsuarioReg(Usuario usuarioReg) {
+		this.usuarioReg = usuarioReg;
+	}
 }

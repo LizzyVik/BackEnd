@@ -2,6 +2,7 @@ package com.backendInventario.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.backendInventario.model.Usuario;
+import com.backendInventario.model.dto.UsuarioDTO;
 import com.backendInventario.service.IUsuarioService;
 
 
@@ -24,6 +26,8 @@ public class UsuarioController {
 	@Autowired
 	private IUsuarioService userService;
 
+	ModelMapper modelMapper = new ModelMapper();
+	
 	@GetMapping("usuarios")
 	public ResponseEntity<?> getAllXUsuarios() {
 		List<Usuario> lstUsuarios = userService.findAll();
@@ -47,17 +51,16 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/usuario/add")
-	public ResponseEntity<?> create(@RequestBody Usuario usuario) {
-		Usuario userResponse = null;
-		if (usuario == null) {
+	public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) {
+		UsuarioDTO UsuarioDTOResponse = null;
+		if (usuarioDTO == null) {
 			return new ResponseEntity<String>("Error al agregar usuario", HttpStatus.PRECONDITION_FAILED);
-		} else {
-			userResponse = userService.save(usuario);
-			if (userResponse == null) {
-				return new ResponseEntity<Usuario>(userResponse, HttpStatus.CREATED);
-			}
 		}
-		return new ResponseEntity<String>("No se pudo procesar la información", HttpStatus.UNPROCESSABLE_ENTITY);
+		UsuarioDTOResponse = modelMapper.map(userService.save(modelMapper.map(usuarioDTO,Usuario.class)),UsuarioDTO.class);
+		if (UsuarioDTOResponse == null) {
+			return new ResponseEntity<String>("No se pudo procesar la información", HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		return new ResponseEntity<UsuarioDTO>(UsuarioDTOResponse,HttpStatus.OK);
 	}
 
 	@PostMapping("/usuario/validate")
