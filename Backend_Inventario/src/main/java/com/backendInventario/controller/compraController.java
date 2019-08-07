@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.backendInventario.Enum.ETipoMovimiento;
 import com.backendInventario.model.Movimiento;
+import com.backendInventario.service.IFacturaCompraService;
 import com.backendInventario.service.IMovimientoService;
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -13,12 +14,10 @@ import com.backendInventario.service.IMovimientoService;
 public class compraController {
 	
 	@Autowired
-	private IMovimientoService movimientoService;
+	private IFacturaCompraService movimientoService;
 
 	
-	public Movimiento crearCompra(Movimiento movimiento){
-		movimiento.setTipoMovimiento(ETipoMovimiento.Venta.getCodTipoVenta());
-		return movimientoService.save(movimiento);
+	public 
 	}
 	/*public void deleteCompra(Integer id) {
 		id.setTipoMovimiento(ETipoMovimiento.Venta.getCodTipoVenta());
