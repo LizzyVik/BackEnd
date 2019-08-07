@@ -56,7 +56,7 @@ public class CategoriaController {
 		if (categoriaresponse == null) {
 			return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		return new ResponseEntity<Categoria>(categoriaresponse, HttpStatus.OK);
+		return new ResponseEntity<String>("Categoría Agregada", HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/categoria/{id}")
@@ -65,7 +65,7 @@ public class CategoriaController {
 		if (categoriaService.existCategoria(id)) {
 			return new ResponseEntity<Categoria>(categoriaService.findbyId(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<String>("Id de categoría no encontrada", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Categoría eliminada", HttpStatus.OK);
 	}
 
 	@PutMapping("/categoria")
