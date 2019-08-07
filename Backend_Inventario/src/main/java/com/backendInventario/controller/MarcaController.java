@@ -54,10 +54,10 @@ public class MarcaController {
 		} else {
 			marcaResponse = marcaService.save(marca);
 			if (marcaResponse == null) {
-				return new ResponseEntity<Marca>(marcaResponse, HttpStatus.CREATED);
+				return new ResponseEntity<Marca>(marcaResponse, HttpStatus.UNPROCESSABLE_ENTITY);
 			}
 		}
-		return new ResponseEntity<String>("No se puede ejecutar la transacción", HttpStatus.UNPROCESSABLE_ENTITY);
+		return new ResponseEntity<String>("Marca agregada", HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/marca/{id}")

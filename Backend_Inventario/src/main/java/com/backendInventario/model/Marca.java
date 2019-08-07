@@ -12,8 +12,8 @@ public class Marca {
 	private Integer id;
 	@Column(unique = true)
 	private String nombreMarca;
-	@ManyToOne
-	private Usuario usuarioReg;
+	//@ManyToOne
+	//private Usuario usuarioReg;
 	
 	public Integer getId() {
 		return id;
@@ -27,11 +27,11 @@ public class Marca {
 	public void setNombreMarca(String nombreMarca) {
 		this.nombreMarca = nombreMarca;
 	}
-	public Usuario getUsuarioReg() {
-		return usuarioReg;
-	}
-	public void setUsuarioReg(Usuario usuarioReg) {
-		this.usuarioReg = usuarioReg;
-	}
+	//public Usuario getUsuarioReg() {
+		//return usuarioReg;
+	//}
+	//public void setUsuarioReg(Usuario usuarioReg) {
+		//this.usuarioReg = usuarioReg;
+	//}
 }
 
