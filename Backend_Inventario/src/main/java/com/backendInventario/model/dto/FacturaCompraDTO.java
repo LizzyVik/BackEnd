@@ -1,37 +1,19 @@
-package com.backendInventario.model;
+package com.backendInventario.model.dto;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-@Entity
-public class FacturaCompra{
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class FacturaCompraDTO{
 	private Integer id;
 	private Integer numFactura;
 	private Timestamp fechaCompra;
 	private Integer montoNeto;
 	private Integer montoIVACF;
 	private Integer montoTotal;
-	@ManyToOne
-	private Sucursal sucursal;
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "facturacompra",orphanRemoval = true)
-	private List<FacturaCompraDet> lstDetalle= new ArrayList<>();
-	@ManyToOne
-	private Proveedor proveedor;
-	@ManyToOne
-	private Usuario usuarioReg;
-	
+	private List<FacturaCompraDetDTO> lstDetalle;
+	private ProveedorDTO proveedor;
+	private SucursalDTO sucursal;
+	private UsuarioDTO usuarioReg;
 	
 	public Integer getId() {
 		return id;
@@ -69,30 +51,29 @@ public class FacturaCompra{
 	public void setMontoTotal(Integer montoTotal) {
 		this.montoTotal = montoTotal;
 	}
-	public List<FacturaCompraDet> getLstDetalle() {
+	public List<FacturaCompraDetDTO> getLstDetalle() {
 		return lstDetalle;
 	}
-	public void setLstDetalle(List<FacturaCompraDet> lstDetalle) {
+	public void setLstDetalle(List<FacturaCompraDetDTO> lstDetalle) {
 		this.lstDetalle = lstDetalle;
 	}
-	public Proveedor getProveedor() {
+	public ProveedorDTO getProveedor() {
 		return proveedor;
 	}
-	public void setProveedor(Proveedor proveedor) {
+	public void setProveedor(ProveedorDTO proveedor) {
 		this.proveedor = proveedor;
 	}
-	public Usuario getUsuarioReg() {
+	public UsuarioDTO getUsuarioReg() {
 		return usuarioReg;
 	}
-	public void setUsuarioReg(Usuario usuarioReg) {
+	public void setUsuarioReg(UsuarioDTO usuarioReg) {
 		this.usuarioReg = usuarioReg;
 	}
-	public Sucursal getSucursal() {
+	public SucursalDTO getSucursal() {
 		return sucursal;
 	}
-	public void setSucursal(Sucursal sucursal) {
+	public void setSucursal(SucursalDTO sucursal) {
 		this.sucursal = sucursal;
 	}
-	
 	
 }

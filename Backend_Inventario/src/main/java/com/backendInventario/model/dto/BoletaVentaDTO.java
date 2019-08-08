@@ -1,31 +1,17 @@
-package com.backendInventario.model;
+package com.backendInventario.model.dto;
 
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-@Entity
-public class BoletaVenta {
+public class BoletaVentaDTO {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer numBoleta;
 	private Date fechaCompra;
 	private Integer montoNeto;
 	private Integer montoIVADF;
 	private Integer montoTotal;
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<BoletaVentaDet> lstDetalle;
-	@ManyToOne
-	private Usuario usuarioReg;
-	
+	private List<BoletaVentaDetDTO> lstDetalle;
+	private UsuarioDTO usuarioReg;
 	
 	public Integer getNumBoleta() {
 		return numBoleta;
@@ -57,10 +43,16 @@ public class BoletaVenta {
 	public void setMontoTotal(Integer montoTotal) {
 		this.montoTotal = montoTotal;
 	}
-	public Usuario getUsuarioReg() {
+	public List<BoletaVentaDetDTO> getLstDetalle() {
+		return lstDetalle;
+	}
+	public void setLstDetalle(List<BoletaVentaDetDTO> lstDetalle) {
+		this.lstDetalle = lstDetalle;
+	}
+	public UsuarioDTO getUsuarioReg() {
 		return usuarioReg;
 	}
-	public void setUsuarioReg(Usuario usuarioReg) {
+	public void setUsuarioReg(UsuarioDTO usuarioReg) {
 		this.usuarioReg = usuarioReg;
 	}
 }

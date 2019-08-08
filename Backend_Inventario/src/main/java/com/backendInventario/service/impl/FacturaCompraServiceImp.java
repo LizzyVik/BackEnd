@@ -13,6 +13,7 @@ public class FacturaCompraServiceImp implements IFacturaCompraService {
 	@Autowired
 	private IFacturaCompraRepository facturacomprarepository;
 
+	@Override
 	public FacturaCompra crearFacturaCompra(FacturaCompra facturacompra) {
 		return facturacomprarepository.save(facturacompra);
 	}

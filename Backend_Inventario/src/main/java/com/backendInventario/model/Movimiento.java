@@ -1,7 +1,7 @@
 package com.backendInventario.model;
 
 import java.sql.Date;
-
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,11 +14,13 @@ public class Movimiento {
 	@Id	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Date fechaRegistro;
+	private Timestamp fechaRegistro;
 	private Integer tipoMovimiento;
 	private String numTransaccion;
 	@ManyToOne
 	private Producto producto;
+	private Integer precioCompra;
+	private Integer precioVenta;
 	private Integer cantidad;
 	@ManyToOne
 	private Sucursal sucursal;
@@ -31,10 +33,10 @@ public class Movimiento {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Date getFechaRegistro() {
+	public Timestamp getFechaRegistro() {
 		return fechaRegistro;
 	}
-	public void setFechaRegistro(Date fechaRegistro) {
+	public void setFechaRegistro(Timestamp fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
 	public Integer getTipoMovimiento() {
@@ -73,4 +75,17 @@ public class Movimiento {
 	public void setUsuarioReg(Usuario usuarioReg) {
 		this.usuarioReg = usuarioReg;
 	}
+	public Integer getPrecioCompra() {
+		return precioCompra;
+	}
+	public void setPrecioCompra(Integer precioCompra) {
+		this.precioCompra = precioCompra;
+	}
+	public Integer getPrecioVenta() {
+		return precioVenta;
+	}
+	public void setPrecioVenta(Integer precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
 }
